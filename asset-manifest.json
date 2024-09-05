@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/everbot/static/css/main.85c26329.css",
+    "main.js": "/everbot/static/js/main.e21ac5ab.js",
+    "static/js/453.1f4fc30a.chunk.js": "/everbot/static/js/453.1f4fc30a.chunk.js",
+    "index.html": "/everbot/index.html",
+    "main.85c26329.css.map": "/everbot/static/css/main.85c26329.css.map",
+    "main.e21ac5ab.js.map": "/everbot/static/js/main.e21ac5ab.js.map",
+    "453.1f4fc30a.chunk.js.map": "/everbot/static/js/453.1f4fc30a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85c26329.css",
+    "static/js/main.e21ac5ab.js"
+  ]
+}
