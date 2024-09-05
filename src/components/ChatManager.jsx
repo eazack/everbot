@@ -3,17 +3,20 @@ import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 
 import { ChatWindow } from "./ChatWindow";
-
+import botScript from "../data/bot-script.json";
 
 export const ChatManager = () => {
 
     const [messages, setMessages] = useState([]);
+    const [botMsgCount, setBotMsgCount] = useState(0);
     const [botActive, setBotActivity] = useState(false);
+
+    const botUrl = "";
 
     useEffect(() => {
         // Send initial greeting
         if ( messages.length === 0 ) { sendMessage("What can I help you with?"); }
-    }, [messages]);
+    }, []);
     
     const sendMessage = (text) => {
         var msg = {
@@ -22,12 +25,26 @@ export const ChatManager = () => {
             direction: "incoming"
         };
 
-        setMessages((messages) => ([...messages, msg]));
+        setMessages(messages => [...messages, msg]);
+        setBotMsgCount(botMsgCount => botMsgCount + 1);
         setBotActivity(false);
     };
 
     const generateResponse = (request) => {
-        return "I got your message: " + request;
+        var response = "";
+
+        // Check if HTTP endpoint is configured
+        if (botUrl.length > 0) {
+            console.log("HTTP");
+        } else {
+            var respCt = Math.min(botMsgCount, botScript.length) - 1;
+            response = botScript[respCt].response;
+        }
+
+        return "I got your message: " + 
+               request + "\n\n" + 
+               "Here's my response: " + 
+               response;
     };
 
     const handleMessage = (text) => {
@@ -37,7 +54,7 @@ export const ChatManager = () => {
             message: text,
             direction: "outgoing"
         };
-        setMessages((messages) => ([...messages, msg]));
+        setMessages(messages => [...messages, msg]);
         setBotActivity(true);
 
         // Respond from the bot
