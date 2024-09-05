@@ -41,10 +41,7 @@ export const ChatManager = () => {
             response = botScript[respCt].response;
         }
 
-        return "I got your message: " + 
-               request + "\n\n" + 
-               "Here's my response: " + 
-               response;
+        return response;
     };
 
     const handleMessage = (text) => {

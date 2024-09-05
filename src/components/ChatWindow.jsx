@@ -8,6 +8,7 @@ import {
     MessageList,
     TypingIndicator
 } from "@chatscope/chat-ui-kit-react";
+import Markdown from 'react-markdown';
 
 export const ChatWindow = ({messages = [], botActive = false, onSend}) => {
     return (
@@ -23,7 +24,11 @@ export const ChatWindow = ({messages = [], botActive = false, onSend}) => {
 
                 <MessageList typingIndicator={ botActive ? <TypingIndicator content="I'm thinking..." /> : "" }>
                     {messages.map( msg =>
-                        <Message key={msg._id} model={msg} />
+                        <Message key={msg._id} model={msg}>
+                            <Message.CustomContent>
+                                <Markdown>{msg.message}</Markdown>
+                            </Message.CustomContent>
+                        </Message>
                     )}
                 </MessageList>
 
